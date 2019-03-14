@@ -36,11 +36,14 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 public class RpcRegistry{
     
     private int port;
-    
+    private String packageName;
     public RpcRegistry(int port){
         this.port = port;
     }
-    
+    public RpcRegistry(int port,String packageName){
+        this.port = port;
+        this.packageName = packageName;
+    }
     public void start(){
         EventLoopGroup bossGroup = new NioEventLoopGroup();
         EventLoopGroup workGroup = new NioEventLoopGroup();
@@ -61,7 +64,7 @@ public class RpcRegistry{
                             pipeline.addLast("decoder",new
                              ObjectDecoder(Integer.MAX_VALUE, 
                              ClassResolvers.cacheDisabled(null)));
-                            pipeline.addLast(new RegistryHandler());
+                            pipeline.addLast(new RegistryHandler(packageName));
                         }
                          
                     }).option(ChannelOption.SO_BACKLOG, 128)

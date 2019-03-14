@@ -37,10 +37,13 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter{
     private List<String> classCache = new ArrayList<String>();
     
     public RegistryHandler() {
-        scannerClass("cn.forp.netty_rpc_registry");
+        scannerClass("");
         doRegister();
     }
-    
+    public RegistryHandler(String packageName) {
+        scannerClass(packageName);
+        doRegister();
+    }
     private void doRegister() {
         if(classCache.size() ==0 ){return;}
         for(String name:classCache){

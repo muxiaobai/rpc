@@ -22,7 +22,7 @@ import cn.forp.netty_rpc_api.RpcRegistry;
  */
 public class Server {
     public static void main( String[] args ){
-        new RpcRegistry(8080).start();
+        new RpcRegistry(8080,"cn.forp.netty_rpc_registry").start();
     }
 }
 
