@@ -9,6 +9,7 @@
 
 package cn.forp.netty_rpc_consumer;
 
+import cn.forp.netty_rpc_api.RpcProxy;
 import cn.forp.netty_rpc_api.RpcService;
 
 /**

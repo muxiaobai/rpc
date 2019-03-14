@@ -7,7 +7,7 @@
  *
 */
 
-package cn.forp.netty_rpc_consumer;
+package cn.forp.netty_rpc_api;
 /**
  * ClassName:RpcProxy 
  * Function: TODO 

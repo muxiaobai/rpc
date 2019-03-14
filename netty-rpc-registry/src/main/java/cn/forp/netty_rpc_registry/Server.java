@@ -8,6 +8,9 @@
 */
 
 package cn.forp.netty_rpc_registry;
+
+import cn.forp.netty_rpc_api.RpcRegistry;
+
 /**
  * ClassName:Server 
  * Function: TODO 

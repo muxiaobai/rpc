@@ -7,7 +7,7 @@
  *
 */
 
-package cn.forp.netty_rpc_registry;
+package cn.forp.netty_rpc_api;
 /**
  * ClassName:RegistryHandler 
  * Function: TODO 
@@ -72,6 +72,7 @@ public class RegistryHandler extends ChannelInboundHandlerAdapter{
         InvokeMsg request = (InvokeMsg)msg;
         if(classMap.containsKey(request.getClassName())){
             Object clazz = classMap.get(request.getClassName());
+            System.out.println(request.getClassName());
             Method method = clazz.getClass().getMethod(request.getMethodName(),
              request.getParamTypes());
             result = method.invoke(clazz, request.getValues());

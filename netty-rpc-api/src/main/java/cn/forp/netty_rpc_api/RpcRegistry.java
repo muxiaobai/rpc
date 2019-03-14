@@ -7,7 +7,7 @@
  *
 */
 
-package cn.forp.netty_rpc_registry;
+package cn.forp.netty_rpc_api;
 /**
  * ClassName:RpcRegistry 
  * Function: TODO 
