@@ -7,7 +7,7 @@
  *
 */
 
-package cn.forp.io_rpc_client;
+package io.github.muxiaobai.io_rpc_common;
 
 import java.net.InetSocketAddress;
 

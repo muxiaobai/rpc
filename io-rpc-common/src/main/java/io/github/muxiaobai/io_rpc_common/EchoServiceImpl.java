@@ -1,4 +1,4 @@
-package cn.forp.io_rpc_server;
+package io.github.muxiaobai.io_rpc_common;
 
 import io.github.muxiaobai.io_rpc_common.EchoService;
 
