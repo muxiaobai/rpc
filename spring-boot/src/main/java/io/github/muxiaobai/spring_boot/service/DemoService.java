@@ -27,8 +27,12 @@ public class DemoService {
     @Autowired
     private RemoteCall remoteCall;
     
-    public void demoRemote(String code){
-//        remoteCall
+    public void doOneRemote(String code){
+        remoteCall.getOne(code);
+    }
+    public void doMoreRemote(String code){
+        
+        remoteCall.getMore(code);
     }
 }
 

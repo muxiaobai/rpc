@@ -9,6 +9,11 @@
 
 package io.github.muxiaobai.spring_boot.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,6 +27,21 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RemoteCall {
-
+    public Map<String,Object> getOne(String code){
+        Map<String,Object> map = new HashMap<>();
+        map.put("code", code);
+        map.put("hello", "hello");
+        return map ;
+        
+    }
+    public List<Map<String,Object>> getMore(String code){
+        List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+        Map<String,Object> map = new HashMap<>();
+        map.put("code", code);
+        map.put("hello", "hello");
+        list.add(map);
+        return list ;
+        
+    }
 }
 
