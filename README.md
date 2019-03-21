@@ -2,7 +2,12 @@
 netty-zookeeper-rpc-demo
 
 ## io 实现rpc
-##### 注:
+##### 注: 
+- io-rpc-common
+
+## 实现tomcat功能
+##### 使用到servlet socket io
+- io-tomcat 
 
 ## netty rpc  
 ##### 注：普通的使用netty实现rpc调用，使用java的反射
