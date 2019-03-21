@@ -8,6 +8,10 @@
 */
 
 package io.github.muxiaobai.io_tomcat.servlet;
+
+import io.github.muxiaobai.io_tomcat.util.Request;
+import io.github.muxiaobai.io_tomcat.util.Response;
+
 /**
  * ClassName:AbstractServlet 
  * Function: TODO 
@@ -17,7 +21,7 @@ package io.github.muxiaobai.io_tomcat.servlet;
  * @version  
  * @since    JDK 1.8	 
  */
-public class AbstractServlet implements IServlet {
+public abstract class AbstractServlet implements IServlet {
 
     @Override
     public void init() {
@@ -27,10 +31,10 @@ public class AbstractServlet implements IServlet {
     }
 
     @Override
-    public void service() {
-        
-        // TODO Auto-generated method stub
-        
+    public void service(Request request,Response response) {
+        if("GET".equalsIgnoreCase(request.getMethod())){
+            this.doGet( request, response);
+        }
     }
 
     @Override
@@ -39,6 +43,10 @@ public class AbstractServlet implements IServlet {
         // TODO Auto-generated method stub
         
     }
+    public abstract void doGet(Request request,Response response);
 
+    public abstract void doPost(Request request,Response response);
+    
+    
 }
 

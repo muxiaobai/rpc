@@ -1,8 +1,8 @@
 /**
  * Project Name:io-tomcat
- * File Name:IServlet.java
+ * File Name:MyServlet.java
  * Package Name:io.github.muxiaobai.io_tomcat.servlet
- * Date:2019年3月20日下午3:01:02
+ * Date:2019年3月21日下午12:02:09
  * Copyright (c) 2019, All Rights Reserved.
  *
 */
@@ -13,17 +13,24 @@ import io.github.muxiaobai.io_tomcat.util.Request;
 import io.github.muxiaobai.io_tomcat.util.Response;
 
 /**
- * ClassName:IServlet 
+ * ClassName:MyServlet 
  * Function: TODO 
  * Reason:	 TODO 
- * Date:     2019年3月20日 下午3:01:02 
+ * Date:     2019年3月21日 下午12:02:09 
  * @author   Mu Xiaobai
  * @version  
  * @since    JDK 1.8	 
  */
-public interface IServlet {
-    public void init();
-    public void service(Request request,Response response);
-    public void destory();
+public class MyServlet extends AbstractServlet{
+
+    @Override
+    public void doGet(Request request, Response response) {
+        response.setWrite("22werwere222");
+    }
+
+    @Override
+    public void doPost(Request request, Response response) {
+    }
+
 }
 
