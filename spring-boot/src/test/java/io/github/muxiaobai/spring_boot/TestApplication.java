@@ -31,7 +31,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import io.github.muxiaobai.spring_boot.service.DemoMoreService;
 import io.github.muxiaobai.spring_boot.service.DemoService;
 
-@SpringBootTest(classes=Application.class)
+@SpringBootTest(classes= Application.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestApplication {
 
@@ -48,8 +48,8 @@ public class TestApplication {
                 try {
                     countDownLatch.await();
 //                    Map<String, Object> resMap= demoService.doRemote("123");
-                    Map<String, Object> resMap= demoMoreService.doRemote("123");
-                    System.out.println("name:"+Thread.currentThread().getName()+",result:"+resMap);
+                    Map<String, Object> resMap= demoMoreService.doRemote(Thread.currentThread().getName());
+                    System.out.println("ThreadName:"+Thread.currentThread().getName()+",result:"+resMap);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -58,14 +58,15 @@ public class TestApplication {
             thread.start();
             countDownLatch.countDown();
         }
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            
-        }
+        
+//        try {
+//            Thread.currentThread().sleep(10000);
+//        } catch (InterruptedException e) {
+//            
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//            
+//        }
         
         
     }

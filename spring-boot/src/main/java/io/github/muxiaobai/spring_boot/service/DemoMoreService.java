@@ -43,7 +43,8 @@ public class DemoMoreService {
     @Autowired
     private RemoteServiceCall remoteCall;
     
-    LinkedBlockingQueue<Request> queue = new LinkedBlockingQueue<>();
+    LinkedBlockingQueue<Request> queue = new LinkedBlockingQueue<Request>();
+    
     public Map<String, Object> doRemote(String orderCode) throws InterruptedException, ExecutionException{
         
         Request request = new Request();
@@ -57,20 +58,20 @@ public class DemoMoreService {
     }
     /**
      * 定时任务 初始化执行
-     * init:(). servlet init
+     * init:(). servlet init方法之前调用这个注解的方法，只会被调用一次
      * @author Mu Xiaobai
      * @since JDK 1.8
      */
     @PostConstruct
     public void init(){
         //定时任务两个线程数
-        ScheduledExecutorService scheduledExecutorService =Executors.newScheduledThreadPool(1);
+        ScheduledExecutorService scheduledExecutorService =Executors.newScheduledThreadPool(2);
        
         scheduledExecutorService.scheduleAtFixedRate(()->{
-
+           
             //run
             int size = queue.size();
-            if(size==0){
+            if(size == 0){
                 return;
             }
             //弹出Request
@@ -79,15 +80,18 @@ public class DemoMoreService {
                 Request request = queue.poll();//出队列
                 requests.add(request);
             }
+          
             System.out.println("10ms 取到的本地请求数："+size);
-
+            
             //循环requests分离orderCode和future
             List<String> orderCodes = new ArrayList<>();
             for(Request request :requests){
                 orderCodes.add(request.orderCode);
             }
+            
             //查询返回结果
             List<Map<String,Object>> responses=remoteCall.getMore(orderCodes);
+            System.out.println(responses);
             //分离返回内容
             Map<String,Map<String,Object>>  responseMap = new HashMap<>(); 
             for(Map<String,Object> response:responses){
@@ -99,7 +103,6 @@ public class DemoMoreService {
                 Map<String, Object> result = responseMap.get(request.orderCode);
                 request.future.complete(result);//转发到对应的线程
             }
-            
             
         }, 0, 10, TimeUnit.MILLISECONDS); //10ms执行
         

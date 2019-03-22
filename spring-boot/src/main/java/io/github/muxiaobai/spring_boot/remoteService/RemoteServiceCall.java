@@ -34,12 +34,14 @@ public class RemoteServiceCall {
         return map ;
         
     }
-    public List<Map<String,Object>> getMore(List<String> code){
+    public List<Map<String,Object>> getMore(List<String> orderCodes){
         List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
-        Map<String,Object> map = new HashMap<>();
-        map.put("code", code);
-        map.put("hello", "hello");
-        list.add(map);
+        for(String orderCode: orderCodes){
+            Map<String,Object> map = new HashMap<>();
+            map.put("code", orderCode);
+            map.put("hello", "hello");
+            list.add(map);
+        }
         return list ;
         
     }
