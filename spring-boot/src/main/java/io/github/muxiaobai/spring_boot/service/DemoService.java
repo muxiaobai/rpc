@@ -9,8 +9,12 @@
 
 package io.github.muxiaobai.spring_boot.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import io.github.muxiaobai.spring_boot.remoteService.RemoteServiceCall;
 
 /**
  * ClassName:DemoService 
@@ -25,14 +29,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class DemoService {
     @Autowired
-    private RemoteCall remoteCall;
+    private RemoteServiceCall remoteCall;
     
-    public void doOneRemote(String code){
-        remoteCall.getOne(code);
-    }
-    public void doMoreRemote(String code){
-        
-        remoteCall.getMore(code);
+    public Map<String, Object> doRemote(String code){
+        Map<String, Object>  result = remoteCall.getOne(code);
+        return result;
     }
 }
 

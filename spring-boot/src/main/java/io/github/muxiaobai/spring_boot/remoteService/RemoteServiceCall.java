@@ -1,13 +1,13 @@
 /**
  * Project Name:spring-boot
- * File Name:RemoteCall.java
- * Package Name:io.github.muxiaobai.spring_boot.service
- * Date:2019年3月21日下午7:32:47
+ * File Name:remoteServiceCall.java
+ * Package Name:io.github.muxiaobai.spring_boot.remoteService
+ * Date:2019年3月22日上午10:37:05
  * Copyright (c) 2019, All Rights Reserved.
  *
 */
 
-package io.github.muxiaobai.spring_boot.service;
+package io.github.muxiaobai.spring_boot.remoteService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,24 +17,24 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 /**
- * ClassName:RemoteCall 
+ * ClassName:remoteServiceCall 
  * Function: TODO 
  * Reason:	 TODO 
- * Date:     2019年3月21日 下午7:32:47 
+ * Date:     2019年3月22日 上午10:37:05 
  * @author   Mu Xiaobai
  * @version  
  * @since    JDK 1.8	 
  */
 @Service
-public class RemoteCall {
-    public Map<String,Object> getOne(String code){
+public class RemoteServiceCall {
+    public Map<String,Object> getOne(String orderCode){
         Map<String,Object> map = new HashMap<>();
-        map.put("code", code);
+        map.put("orderCode", orderCode);
         map.put("hello", "hello");
         return map ;
         
     }
-    public List<Map<String,Object>> getMore(String code){
+    public List<Map<String,Object>> getMore(List<String> code){
         List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
         Map<String,Object> map = new HashMap<>();
         map.put("code", code);

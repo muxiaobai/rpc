@@ -34,7 +34,7 @@ public class TomcatServer {
         while(true){
             Socket socket = serverSocket.accept();
             SocketProcess socketProcess = new SocketProcess(socket);
-            System.out.println("currentThread:"+Thread.currentThread());
+            System.out.println("currentThread:"+Thread.currentThread()+",socket:"+socket.getLocalAddress());
             socketProcess.start();
         }
 	 }
