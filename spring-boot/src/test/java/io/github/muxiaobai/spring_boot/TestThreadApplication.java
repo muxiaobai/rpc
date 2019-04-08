@@ -29,11 +29,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import io.github.muxiaobai.spring_boot.service.DemoMoreService;
+import io.github.muxiaobai.spring_boot.service.DemoMoreThreadService;
 import io.github.muxiaobai.spring_boot.service.DemoService;
 
 @SpringBootTest(classes= Application.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TestApplication {
+public class TestThreadApplication {
 
     private static final int nums = 1000;
     private CountDownLatch countDownLatch = new CountDownLatch(nums); 
@@ -41,15 +42,23 @@ public class TestApplication {
     public DemoService demoService;
     @Autowired
     public DemoMoreService demoMoreService;
+    @Autowired
+    public DemoMoreThreadService demoMoreThreadService;
+    
     @Test
     public void test(){
+       
         for(int i  = 0;i<nums;i++){
             Thread thread = new Thread(()->{
                 try {
                     countDownLatch.await();
 //                    Map<String, Object> resMap= demoService.doRemote("123");
-                    Map<String, Object> resMap= demoMoreService.doRemote(Thread.currentThread().getName());
-                    System.out.println("ThreadName:"+Thread.currentThread().getName()+",result:"+resMap);
+                    Long startTime =System.currentTimeMillis();
+//                    Map<String, Object> resMap= demoMoreThreadService.doEachRemote(Thread.currentThread().getName());//依次调用
+//                    Map<String, Object> resMap= demoMoreThreadService.doThreadRemote(Thread.currentThread().getName());//线程调用
+                    Map<String, Object> resMap= demoMoreThreadService.doExecPoolRemote(Thread.currentThread().getName());//线程池调用
+                    Long endTime = System.currentTimeMillis();
+                    System.out.println("ThreadName:"+Thread.currentThread().getName()+",result:"+resMap+",endTime-startTime:"+(endTime-startTime)+"ms");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -58,14 +67,10 @@ public class TestApplication {
             thread.start();
             countDownLatch.countDown();
         }
-        
+       
         try {
             Thread.currentThread().sleep(10000);
         } catch (InterruptedException e) {
-            
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            
         }
         
         

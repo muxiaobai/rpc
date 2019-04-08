@@ -29,8 +29,31 @@ import org.springframework.stereotype.Service;
 public class RemoteServiceCall {
     public Map<String,Object> getOne(String orderCode){
         Map<String,Object> map = new HashMap<>();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            
+        }
         map.put("orderCode", orderCode);
         map.put("hello", "hello");
+        return map ;
+        
+    }
+    public Map<String,Object> getTwo(String orderCode){
+        Map<String,Object> map = new HashMap<>();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            
+        }
+        map.put("orderCode2", orderCode);
+        map.put("hello2", "hello2");
         return map ;
         
     }
