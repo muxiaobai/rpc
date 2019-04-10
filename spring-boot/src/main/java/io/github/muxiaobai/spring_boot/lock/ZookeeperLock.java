@@ -13,6 +13,7 @@ import java.util.concurrent.CountDownLatch;
 
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
+import org.I0Itec.zkclient.serialize.SerializableSerializer;
 
 /**
  * ClassName:ZookeeperLock
@@ -26,11 +27,11 @@ import org.I0Itec.zkclient.ZkClient;
 public class ZookeeperLock extends AbsLock{
     private static CountDownLatch CountDownLatch = null;
     private static String Node= "/demo";
-    private ZkClient ZkClient =new ZkClient("127.0.0.1:2181", 1000);
+    private ZkClient ZkClient =new ZkClient("127.0.0.1:2181", 1000, 1000, new SerializableSerializer());
     @Override
     public  Boolean getLock() {
         try{
-           this.ZkClient.createEphemeral(Node);
+           ZkClient.createEphemeral(Node);
            return true;
         }catch(Exception e){
             return false;
@@ -50,7 +51,7 @@ public class ZookeeperLock extends AbsLock{
             public void handleDataChange(String arg0, Object arg1) throws Exception {
             }
         };
-        this.ZkClient.subscribeDataChanges(Node, listener);
+        ZkClient.subscribeDataChanges(Node, listener);
         if(ZkClient.exists(Node)){
             CountDownLatch =new CountDownLatch(1);
             try {
@@ -59,7 +60,7 @@ public class ZookeeperLock extends AbsLock{
                  e.printStackTrace();
              }
         }
-        this.ZkClient.unsubscribeDataChanges(Node, listener);
+        ZkClient.unsubscribeDataChanges(Node, listener);
     }
     @Override
     public void unlock(){

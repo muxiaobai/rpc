@@ -9,10 +9,7 @@
 
 package io.github.muxiaobai.spring_boot.lock;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.CountDownLatch;
 
@@ -23,8 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import io.github.muxiaobai.spring_boot.Application;
-import io.github.muxiaobai.spring_boot.service.DemoMoreService;
-import io.github.muxiaobai.spring_boot.service.DemoService;
 
 /**
  * ClassName:TestLock 
@@ -41,7 +36,7 @@ import io.github.muxiaobai.spring_boot.service.DemoService;
 public class TestLock {
     @Autowired
     public OrderNumberGenerator orderNumberGenerator;
-    private static final int nums = 10;
+    private static final int nums = 100;
     private CountDownLatch countDownLatch = new CountDownLatch(nums); 
     private List<String> result = new Vector<>();
     @Test
