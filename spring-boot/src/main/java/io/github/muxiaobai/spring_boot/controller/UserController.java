@@ -33,14 +33,22 @@ import io.github.muxiaobai.spring_boot.service.DemoMoreThreadService;
 public class UserController {
     @Autowired
     public DemoMoreThreadService demoMoreThreadService;
-
+    /**
+     * 
+     * getUser:().
+     * @author Mu Xiaobai
+     * @return
+     * @throws InterruptedException
+     * @throws ExecutionException
+     * @since JDK 1.8
+     */
     @RequestMapping("/user")
     @ResponseBody
     public Map<String, Object> getUser() throws InterruptedException, ExecutionException{
         Long startTime =System.currentTimeMillis();
 //      Map<String, Object> resMap= demoMoreThreadService.doEachRemote(Thread.currentThread().getName());//依次调用
-      Map<String, Object> resMap= demoMoreThreadService.doThreadRemote(Thread.currentThread().getName());//线程调用
-//      Map<String, Object> resMap= demoMoreThreadService.doExecPoolRemote(Thread.currentThread().getName());//线程池调用
+//      Map<String, Object> resMap= demoMoreThreadService.doThreadRemote(Thread.currentThread().getName());//线程调用
+      Map<String, Object> resMap= demoMoreThreadService.doExecPoolRemote(Thread.currentThread().getName());//线程池调用
       Long endTime = System.currentTimeMillis();
       System.out.println("ThreadName:"+Thread.currentThread().getName()+",result:"+resMap);
       System.out.println("endTime-startTime:"+(endTime-startTime)+"ms");
