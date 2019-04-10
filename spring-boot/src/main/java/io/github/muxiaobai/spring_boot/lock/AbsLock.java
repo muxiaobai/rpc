@@ -22,9 +22,10 @@ public abstract  class AbsLock implements Lock {
     @Override
     public void lock() {
         if(getLock()){
-            System.out.print("=========获取到分布式锁=========");
+            System.out.println("=========获取到分布式锁=========");
         }else{
             waitLock();
+            
             getLock();
         }
     }
