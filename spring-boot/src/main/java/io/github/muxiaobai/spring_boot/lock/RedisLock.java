@@ -9,6 +9,7 @@
 
 package io.github.muxiaobai.spring_boot.lock;
 
+import io.lettuce.core.RedisClient;
 
 /**
  * ClassName:RedisLock 
@@ -20,6 +21,7 @@ package io.github.muxiaobai.spring_boot.lock;
  * @since    JDK 1.8	 
  */
 public class RedisLock extends AbsLock{
+    private RedisClient RedisClient;
     @Override
     public  Boolean getLock() {
         return null;

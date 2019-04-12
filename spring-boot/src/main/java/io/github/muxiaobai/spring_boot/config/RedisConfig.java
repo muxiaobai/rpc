@@ -127,7 +127,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
             @Override
             public void handleCachePutError(RuntimeException e, Cache cache, Object key, Object value) {
-                lg.error("Redis occur handleCachePutError：key -> [{}]；value -> [{}]", key, value, e);
+                lg.error("Redis occur handleCachePutError：key -> [{}]；value -> [{}]", key, value);
             }
 
             @Override

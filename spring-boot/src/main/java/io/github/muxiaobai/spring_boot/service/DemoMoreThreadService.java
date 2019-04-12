@@ -48,6 +48,16 @@ public class DemoMoreThreadService {
     private RemoteServiceCall remoteCall;
     
     protected static ExecutorService threads = Executors.newFixedThreadPool(10);
+    /**
+     * 使用线程池并行
+     * doExecPoolRemote:().
+     * @author Mu Xiaobai
+     * @param orderCode
+     * @return
+     * @throws InterruptedException
+     * @throws ExecutionException
+     * @since JDK 1.8
+     */
     public Map<String, Object> doExecPoolRemote(String orderCode) throws InterruptedException, ExecutionException{
         
         Callable<Map<String, Object>> callable =  new Callable<Map<String, Object>>() {
@@ -74,6 +84,16 @@ public class DemoMoreThreadService {
         result.putAll(futureTask1.get());
         return result;
 }
+    /**
+     * 使用线程并行
+     * doThreadRemote:().
+     * @author Mu Xiaobai
+     * @param orderCode
+     * @return
+     * @throws InterruptedException
+     * @throws ExecutionException
+     * @since JDK 1.8
+     */
     public Map<String, Object> doThreadRemote(String orderCode) throws InterruptedException, ExecutionException{
         
         Callable<Map<String, Object>> callable =  new Callable<Map<String, Object>>() {
@@ -100,6 +120,16 @@ public class DemoMoreThreadService {
         result.putAll(futureTask1.get());
         return result;
     }
+    /**
+     * 串行
+     * doEachRemote:().
+     * @author Mu Xiaobai
+     * @param orderCode
+     * @return
+     * @throws InterruptedException
+     * @throws ExecutionException
+     * @since JDK 1.8
+     */
     public Map<String, Object> doEachRemote(String orderCode) throws InterruptedException, ExecutionException{
        
         Map<String, Object> result = new HashMap<>();
