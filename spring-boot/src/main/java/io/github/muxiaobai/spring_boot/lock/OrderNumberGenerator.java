@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
  * @version  
  * @since    JDK 1.8	 
  */
-@Service
+//@Service
 public class OrderNumberGenerator {
       public static int count =0;
       private static Object lock = new Object();

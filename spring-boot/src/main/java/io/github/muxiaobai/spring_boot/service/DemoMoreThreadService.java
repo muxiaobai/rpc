@@ -30,6 +30,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.github.muxiaobai.spring_boot.remoteService.RemoteServiceCall;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * ClassName:DemoService 
@@ -58,8 +60,9 @@ public class DemoMoreThreadService {
      * @throws ExecutionException
      * @since JDK 1.8
      */
+    @Transactional(propagation = Propagation.REQUIRED)
     public Map<String, Object> doExecPoolRemote(String orderCode) throws InterruptedException, ExecutionException{
-        
+        System.out.println("sssss");
         Callable<Map<String, Object>> callable =  new Callable<Map<String, Object>>() {
             @Override
             public Map<String, Object> call() throws Exception {
