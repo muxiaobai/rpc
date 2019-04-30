@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import io.github.muxiaobai.spring_boot.service.DemoMoreThreadService;
 
 /**
- * ClassName:UserController 
- * Function: TODO 
- * Reason:	 TODO 
- * Date:     2019年4月8日 下午7:58:02 
+ * ClassName:UserController
+ * Function: TODO
+ * Reason:	 TODO
+ * Date:     2019年4月8日 下午7:58:02
  * @author   Mu Xiaobai
- * @version  
- * @since    JDK 1.8	 
+ * @version
+ * @since    JDK 1.8
  */
 @Controller
 @RequestMapping
@@ -34,7 +34,7 @@ public class UserController {
     @Autowired
     public DemoMoreThreadService demoMoreThreadService;
     /**
-     * 
+     *
      * getUser:().
      * @author Mu Xiaobai
      * @return
@@ -52,7 +52,7 @@ public class UserController {
       Long endTime = System.currentTimeMillis();
       System.out.println("ThreadName:"+Thread.currentThread().getName()+",result:"+resMap);
       System.out.println("endTime-startTime:"+(endTime-startTime)+"ms");
-      
+
       return resMap;
 
     }

@@ -12,10 +12,15 @@ package io.github.muxiaobai.spring_boot.service;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import io.github.muxiaobai.spring_boot.remoteService.RemoteServiceCall;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.swing.*;
 
 /**
  * ClassName:DemoService 
@@ -28,13 +33,13 @@ import io.github.muxiaobai.spring_boot.remoteService.RemoteServiceCall;
  */
 
 @Service
-public class DemoService {
+public class DemoService extends SpringApplication {
     @Autowired
     private RemoteServiceCall remoteCall;
    
-
-    public Map<String, Object> doRemote(String code){
-        Map<String, Object>  result = remoteCall.getOne(code);
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Map<String, Object> doRemote(String code) {
+        Map<String, Object> result = remoteCall.getOne (code);
         return result;
     }
 }
