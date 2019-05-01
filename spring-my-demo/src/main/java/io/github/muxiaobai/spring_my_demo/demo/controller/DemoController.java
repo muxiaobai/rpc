@@ -26,5 +26,13 @@ public class DemoController {
             e.printStackTrace();
         }
     }
+    @RequestMapping("/do2")
+    public  void  query2(HttpServletRequest request, HttpServletResponse response, @RequestParam("name") String name){
+        try {
+            response.getWriter().write(demoService.retName(name));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
 }

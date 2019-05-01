@@ -7,9 +7,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import io.github.muxiaobai.spring_my_demo.mvcframework.annotation.*;
 
 public class DispatcherServlet extends HttpServlet {
@@ -20,9 +26,77 @@ public class DispatcherServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        this.doDispatch(req, resp);
     }
+    private void  doDispatch(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 
+        //使用map
+        /*
+        if(!handMapping.containsKey(url)){
+            resp.getWriter().write("404");
+            return;
+        }
+        System.out.println("url:"+url);
+        //反射调用具体的方法
+        Method method = handMapping.get(url);
+
+        Object obj = method.invoke();
+        resp.getWriter().write(obj);
+        */
+        Hander hander =this.getHander(req);
+        if(hander==null){
+            resp.getWriter().write("404");
+            return;
+        }
+        //参数
+        Class[] paramTypes = hander.method.getParameterTypes();
+        Object[] paramvalues = new Object[paramTypes.length];
+        Map<String,String[]>  params = req.getParameterMap();
+        for (Map.Entry<String,String[]> param : params.entrySet()){
+            String value = Arrays.toString(param.getValue()).replaceAll("\\[|\\]","").replaceAll(",\\s","");
+            //传递的参数中没在调用方法中
+            if(!hander.paramIndexMapping.containsKey(param.getKey())){continue;}
+            int index  = hander.paramIndexMapping.get(param.getKey());
+            paramvalues[index] =this.convert(paramTypes[index],value);
+        }
+        int reqIndex = hander.paramIndexMapping.get(HttpServletRequest.class.getName());
+        paramvalues[reqIndex] = req;
+        int respIndex = hander.paramIndexMapping.get(HttpServletResponse.class.getName());
+        paramvalues[respIndex] = resp;
+        //方法和对象
+        Method method= hander.method;
+        Object controller = hander.controller;
+        //反射
+        Object obj = null;
+        try {
+            obj = method.invoke(controller,paramvalues);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+//        resp.getWriter().write(obj);
+
+    }
+    private Hander getHander(HttpServletRequest req){
+        if(handMapping.isEmpty()){return  null;}
+        for(Hander hander:handMapping){
+            String url = req.getRequestURI();
+            String contextPath = req.getContextPath();
+            url = url.replace(contextPath,"");
+
+            Matcher matcher = hander.pattern.matcher(url);
+            if(!matcher.matches()){continue;}
+            return  hander;
+        }
+        return  null;
+    }
+    private  Object convert(Class type,String value){
+        if(Integer.class == type){
+            return  Integer.valueOf(value);
+        }
+        return value;
+    }
     @Override
     public void init() throws ServletException {
         //加载配置文件
@@ -99,7 +173,7 @@ public class DispatcherServlet extends HttpServlet {
                         //接口
                         Class[] intefaces = clazz.getInterfaces();
                         for (Class inteface: intefaces){
-                            ioc.put(inteface.getName(),instance);
+                            ioc.put(this.firstLow(inteface.getSimpleName()),instance);
                         }
 
                     }else{
@@ -118,7 +192,7 @@ public class DispatcherServlet extends HttpServlet {
     }
     private void  doAutowired(){
         if(!ioc.isEmpty()){
-            for (Map.Entry entry : ioc.entrySet()){
+            for (Map.Entry<String,Object> entry : ioc.entrySet()){
                 //所有的字段
                 Field[]  fields =  entry.getValue().getClass().getDeclaredFields();
                 for(Field field : fields){
@@ -131,22 +205,91 @@ public class DispatcherServlet extends HttpServlet {
                     if("".equals(beanName)){
                         beanName = field.getType().getName();
                     }
+
                     field.setAccessible(true);
                     try {
                         field.set(entry.getValue(),ioc.get(field.getName()));
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
-
-
                 }
-
-
             }
+        }
+    }
+//    private Map<String, Method> handMapping = new HashMap<String,Method>();
+    private List<Hander> handMapping = new ArrayList<>();
+    private  void  initHanderMapping(){
+        if(ioc.isEmpty()){return;}
+        for (Map.Entry entry : ioc.entrySet()) {
+                Class clazz = entry.getValue().getClass();
+                if (!clazz.isAnnotationPresent(Controller.class)) { continue; }
+                //类上的路径
+                String url ="";
+                if(clazz.isAnnotationPresent(RequestMapping.class)){
+                    RequestMapping requestMapping = (RequestMapping) clazz.getAnnotation(RequestMapping.class);
+                    url = requestMapping.value();
+                }
+                //方法上的注解路径
+                //使用map
+                /*
+                Method[] methods = clazz.getMethods();
+                for (Method method : methods){
+                    if(!method.isAnnotationPresent(RequestMapping.class)){continue; }
+                    RequestMapping requestMapping = (RequestMapping) method.getAnnotation(RequestMapping.class);
+                    String mapurl = url +requestMapping.value();
+                    handMapping.put(mapurl,method);
+                    System.out.println("mapurl:"+mapurl+",method:"+method);
+                }
+                */
+                //使用list
+                Method[] methods = clazz.getMethods();
+                for (Method method : methods){
+                    if(!method.isAnnotationPresent(RequestMapping.class)){continue; }
+                    RequestMapping requestMapping = (RequestMapping) method.getAnnotation(RequestMapping.class);
+                    String mapurl = url +requestMapping.value();
+                    Pattern pattern = Pattern.compile("/"+url+requestMapping.value());
+                    Hander hander = new Hander(pattern,entry.getValue(),method);
+                    handMapping.add(hander);
+                    System.out.println("mapurl:"+mapurl+",method:"+method);
+                }
 
         }
     }
-    private  void  initHanderMapping(){
+    //内部类
+    private class Hander {
+        protected  Object controller;
+        protected Method method;
+        protected Pattern pattern;
+        protected Map<String,Integer> paramIndexMapping;
 
+        protected  Hander(Pattern pattern ,Object controller,Method method){
+            this.pattern = pattern;
+            this.controller = controller;
+            this.method = method;
+            paramIndexMapping = new HashMap<String,Integer>();
+            putParamIndexMapping(method);
+        }
+        private  void  putParamIndexMapping(Method method){
+            //方法中的注解参数
+            Annotation[][] pa = method.getParameterAnnotations();
+            for (int i = 0;i<pa.length;i++){
+                for (Annotation annotation:pa[i]){
+                    String paramName = ((RequestParam)annotation).value();
+                    if(!"".equals(paramName.trim())){
+                        paramIndexMapping.put(paramName,i);
+                    }
+                }
+            }
+            //
+            Class[] paramsTypes = method.getParameterTypes();
+            for (int i =0 ;i<paramsTypes.length; i++){
+                Class type = paramsTypes[i].getClass();
+                if(type == HttpServletRequest.class||  type == HttpServletResponse.class){
+                    paramIndexMapping.put(type.getName(),i);
+                }
+            }
+        }
     }
+
 }
+
