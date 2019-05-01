@@ -24,6 +24,19 @@
 - doDispatch 方法  根据用户写的handMapping匹配
 - 反射 动态调用
 - response
+
+ org.springframework.web.servlet;
+
+
+        this.initMultipartResolver(context);
+        this.initLocaleResolver(context);
+        this.initThemeResolver(context);
+        this.initHandlerMappings(context);
+        this.initHandlerAdapters(context);
+        this.initHandlerExceptionResolvers(context);
+        this.initRequestToViewNameTranslator(context);
+        this.initViewResolvers(context);
+        this.initFlashMapManager(context);
 #### spring ioc aop 
 
 ####mybatis
