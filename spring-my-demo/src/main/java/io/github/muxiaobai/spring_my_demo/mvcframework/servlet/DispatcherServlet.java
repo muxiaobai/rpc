@@ -291,5 +291,8 @@ public class DispatcherServlet extends HttpServlet {
         }
     }
 
+    public Map getIoc() {
+        return this.ioc;
+    }
 }
 
