@@ -22,7 +22,7 @@ public class mysqlUtil {
         }
         return  null;
     }
-    private  void  execute (String sql){
+    public   void  execute (String sql){
         Connection connection  =createConn();
         try {
             Statement statement =  connection.createStatement();
@@ -35,8 +35,8 @@ public class mysqlUtil {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
     public static void main(String[] args) {
         String sql = "insert into user (username,password) values (111,222)";
         mysqlUtil mysqlUtil = new mysqlUtil();

@@ -1,34 +1,29 @@
 import io.github.muxiaobai.spring_my_demo.demo.service.OneService;
+import io.github.muxiaobai.spring_my_demo.jdbc.util.mysqlUtil;
 import io.github.muxiaobai.spring_my_demo.mvcframework.servlet.DispatcherServlet;
 
 import javax.servlet.ServletException;
-import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 
 public class Test {
     public static void main(String[] args) {
-        DispatcherServlet dispatcherServlet = new DispatcherServlet();
-        try {
-            dispatcherServlet.init();
-            OneService oneService = (OneService) dispatcherServlet.getIoc().get("oneService");
-            System.out.println(oneService.retName(":dddd"));
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }
+        Test test = new Test();
+        test.test();
     }
-    private static final int nums = 1000;
+    private static final int nums = 200;
     private CountDownLatch countDownLatch = new CountDownLatch(nums);
     private CyclicBarrier cyclicBarrier = new CyclicBarrier(nums+1);
-    public OneService oneService;
-
+    private mysqlUtil mysqlUtil = new mysqlUtil();
     public void test() {
         for (int i = 0; i < nums; i++) {
             Thread thread = new Thread(() -> {
                 try {
                     countDownLatch.await();
-                    oneService.retName("");
-                    System.out.println("ThreadName:" + Thread.currentThread().getName() + ",result:");
+                    System.out.println("ThreadName:" + Thread.currentThread().getName());
+                    String sql = "insert into user (username,password) values (121212,\""+Thread.currentThread().getName()+"\")";
+                    System.out.println("SQL:" +sql);
+                    mysqlUtil.execute(sql);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -47,4 +42,15 @@ public class Test {
         }
     }
 
+    public  void  getIOC (){
+        DispatcherServlet dispatcherServlet = new DispatcherServlet();
+        try {
+            dispatcherServlet.init();
+            OneService oneService = (OneService) dispatcherServlet.getIoc().get("oneService");
+            System.out.println(oneService.retName(":dddd"));
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+
     }
+}
