@@ -1,13 +1,14 @@
 package io.github.muxiaobai.spring_my_demo.connectionpool;
 
 import io.github.muxiaobai.spring_my_demo.jdbc.util.mysqlUtil;
+import io.github.muxiaobai.spring_my_demo.mvcframework.annotation.Service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-
+@Service
 public class MysqlPoolImpl implements  MysqlPool {
     private int maxSize = 100;
 
@@ -17,8 +18,6 @@ public class MysqlPoolImpl implements  MysqlPool {
 
     @Override
     public void init() {
-        idle = new LinkedBlockingQueue<>();
-        busy = new LinkedBlockingQueue<>();
     }
 
     @Override

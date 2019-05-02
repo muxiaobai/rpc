@@ -27,5 +27,18 @@
 #### spring ioc aop 
 
 ####mybatis
+运行原理
 
-数据库连接池
+init 
+scan mapper
+
+- sqlSessionFactory
+- sqlSession
+- MappedStatement
+- CacheExecutor
+- prepareStatement
+
+
+
+##### 数据库连接池
+

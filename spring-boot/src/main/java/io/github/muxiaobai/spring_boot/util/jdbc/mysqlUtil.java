@@ -1,9 +1,10 @@
 package io.github.muxiaobai.spring_boot.util.jdbc;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.lang.reflect.Field;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class mysqlUtil {
     static {
@@ -28,8 +29,9 @@ public class mysqlUtil {
     public  void  execute (String sql){
         Connection connection  =createConn();
         try {
-            Statement statement =  connection.createStatement();
-            statement.execute(sql);
+            PreparedStatement preparedStatement =  connection.prepareStatement(sql);
+            preparedStatement.execute();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -44,16 +46,51 @@ public class mysqlUtil {
     public  void execPool(String sql){
         Connection connection = mysqlPool.getConn();
         try {
-            Statement statement =  connection.createStatement();
-            statement.execute(sql);
+            PreparedStatement preparedStatement =  connection.prepareStatement(sql);
+            preparedStatement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         mysqlPool.release(connection);
     }
+    public List executeQuery(String sql){
+        Connection connection  =createConn();
+        List list = new ArrayList();
+        try {
+            PreparedStatement preparedStatement =  connection.prepareStatement(sql);
+            ResultSet resultSet= preparedStatement.executeQuery();
+            int len = resultSet.getMetaData().getColumnCount();
+            while (resultSet.next()){
+                Class clazz = Demo.class;
+                Object object = clazz.newInstance();
+                for (int i =0;i<len;i++){
+                    String columnName = resultSet.getMetaData().getColumnName(i);
+                    Field field = clazz.getField(columnName);
+                    field.setAccessible(true);
+                    field.set(object,resultSet.getInt(i));
+
+                }
+                list.add(object);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  list;
+    }
+
     public static void main(String[] args) {
         String sql = "insert into user (username,password) values (111,222)";
+        String querySql = "select * from  user ";
+
         mysqlUtil mysqlUtil = new mysqlUtil();
-        mysqlUtil.execute(sql);
+//        mysqlUtil.execute(sql);
+        List list = mysqlUtil.executeQuery(querySql);
+        System.out.println(list.toString());
     }
 }
