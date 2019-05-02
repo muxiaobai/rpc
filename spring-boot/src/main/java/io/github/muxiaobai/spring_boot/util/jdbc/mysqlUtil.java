@@ -1,9 +1,9 @@
-package io.github.muxiaobai.spring_my_demo.jdbc.util;
+package io.github.muxiaobai.spring_boot.util.jdbc;
 
-import io.github.muxiaobai.spring_my_demo.connectionpool.MysqlPool;
-import io.github.muxiaobai.spring_my_demo.connectionpool.MysqlPoolImpl;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class mysqlUtil {
     static {

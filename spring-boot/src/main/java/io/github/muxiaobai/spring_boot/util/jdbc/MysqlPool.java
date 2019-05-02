@@ -1,4 +1,4 @@
-package io.github.muxiaobai.spring_my_demo.connectionpool;
+package io.github.muxiaobai.spring_boot.util.jdbc;
 
 import java.sql.Connection;
 

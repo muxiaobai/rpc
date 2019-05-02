@@ -9,9 +9,10 @@
 
 package io.github.muxiaobai.spring_boot.service;
 
+import io.github.muxiaobai.spring_boot.util.jdbc.mysqlUtil;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * ClassName:DemoService 
@@ -24,10 +25,46 @@ import java.util.Map;
  */
 
 @Service
-public class DemoDBService  {
-    public String dbConn(String code) {
+public class DemoDBService {
 
-        return  "code:"+code;
+
+    public void dbConnPool(Integer nums) {
+         CountDownLatch countDownLatch = new CountDownLatch(nums);
+         io.github.muxiaobai.spring_boot.util.jdbc.mysqlUtil mysqlUtil = new mysqlUtil();
+        for (int i = 0; i < nums; i++) {
+            Thread thread = new Thread(() -> {
+                try {
+                    countDownLatch.await();
+                    System.out.println("ThreadName:" + Thread.currentThread().getName());
+                    String sql = "insert into user (username,password) values (121212,\"" + Thread.currentThread().getName() + "\")";
+                    System.out.println("SQL:" + sql);
+                    mysqlUtil.execPool(sql);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            thread.start();
+            countDownLatch.countDown();
+        }
     }
-}
+    public void dbConn(Integer nums) {
+        CountDownLatch countDownLatch = new CountDownLatch(nums);
+        io.github.muxiaobai.spring_boot.util.jdbc.mysqlUtil mysqlUtil = new mysqlUtil();
+        for (int i = 0; i < nums; i++) {
+            Thread thread = new Thread(() -> {
+                try {
+                    countDownLatch.await();
+                    System.out.println("ThreadName:" + Thread.currentThread().getName());
+                    String sql = "insert into user (username,password) values (121212,\"" + Thread.currentThread().getName() + "\")";
+                    System.out.println("SQL:" + sql);
+                    mysqlUtil.execute(sql);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+            thread.start();
+            countDownLatch.countDown();
+        }
+    }
 
+}

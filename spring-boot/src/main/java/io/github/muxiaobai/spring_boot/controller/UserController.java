@@ -40,35 +40,42 @@ public class UserController {
     public DemoMoreThreadService demoMoreThreadService;
     @Autowired
     public DemoDBService demoDBService;
+
     /**
-     *
      * getUser:().
-     * @author Mu Xiaobai
+     *
      * @return
      * @throws InterruptedException
      * @throws ExecutionException
+     * @author Mu Xiaobai
      * @since JDK 1.8
      */
-    @RequestMapping(value = "/user",method = RequestMethod.GET)
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getUser() throws InterruptedException, ExecutionException{
-        Long startTime =System.currentTimeMillis();
+    public Map<String, Object> getUser() throws InterruptedException, ExecutionException {
+        Long startTime = System.currentTimeMillis();
 //      Map<String, Object> resMap= demoMoreThreadService.doEachRemote(Thread.currentThread().getName());//依次调用
 //      Map<String, Object> resMap= demoMoreThreadService.doThreadRemote(Thread.currentThread().getName());//线程调用
-      Map<String, Object> resMap= demoMoreThreadService.doExecPoolRemote(Thread.currentThread().getName());//线程池调用
+        Map<String, Object> resMap = demoMoreThreadService.doExecPoolRemote(Thread.currentThread().getName());//线程池调用
 
-      Long endTime = System.currentTimeMillis();
-      System.out.println("ThreadName:"+Thread.currentThread().getName()+",result:"+resMap);
-      System.out.println("endTime-startTime:"+(endTime-startTime)+"ms");
+        Long endTime = System.currentTimeMillis();
+        System.out.println("ThreadName:" + Thread.currentThread().getName() + ",result:" + resMap);
+        System.out.println("endTime-startTime:" + (endTime - startTime) + "ms");
 
-      return resMap;
+        return resMap;
 
     }
-    @RequestMapping(value = "/db",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/db", method = RequestMethod.GET)
     @ResponseBody
-    public String getDb(@RequestParam("code") String code) throws InterruptedException, ExecutionException{
-       return demoDBService.dbConn(code);
+    public void doDb(@RequestParam("nums") Integer nums) throws InterruptedException, ExecutionException {
+        demoDBService.dbConn(nums);
     }
 
+    @RequestMapping(value = "/dbPool", method = RequestMethod.GET)
+    @ResponseBody
+    public void doDbPool(@RequestParam("nums") Integer nums) throws InterruptedException, ExecutionException {
+        demoDBService.dbConn(nums);
+    }
 }
 

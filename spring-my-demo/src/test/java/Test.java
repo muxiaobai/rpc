@@ -11,10 +11,11 @@ public class Test {
         Test test = new Test();
         test.test();
     }
-    private static final int nums = 200;
+    private static final int nums = 150;
     private CountDownLatch countDownLatch = new CountDownLatch(nums);
     private CyclicBarrier cyclicBarrier = new CyclicBarrier(nums+1);
     private mysqlUtil mysqlUtil = new mysqlUtil();
+
     public void test() {
         for (int i = 0; i < nums; i++) {
             Thread thread = new Thread(() -> {
@@ -23,7 +24,8 @@ public class Test {
                     System.out.println("ThreadName:" + Thread.currentThread().getName());
                     String sql = "insert into user (username,password) values (121212,\""+Thread.currentThread().getName()+"\")";
                     System.out.println("SQL:" +sql);
-                    mysqlUtil.execute(sql);
+//                    mysqlUtil.execute(sql);
+                    mysqlUtil.execPool(sql);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
