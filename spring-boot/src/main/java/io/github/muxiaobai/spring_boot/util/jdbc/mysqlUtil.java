@@ -3,6 +3,7 @@ package io.github.muxiaobai.spring_boot.util.jdbc;
 import io.github.muxiaobai.spring_boot.vo.User;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,13 +65,26 @@ public class mysqlUtil {
             while (resultSet.next()){
                 Class clazz = User.class;
                 Object object = clazz.newInstance();
-                for (int i =0;i<len;i++){
-                    String columnName = resultSet.getMetaData().getColumnName(i);
-                    Field field = clazz.getField(columnName);
-                    field.setAccessible(true);
-                    field.set(object,resultSet.getInt(i));
-
-                }
+                Field[] fields = clazz.getDeclaredFields();
+                for (Field field: fields){
+                        if(field.isAnnotationPresent(Column.class)){
+                            String columnName = field.getAnnotation(Column.class).value().trim();
+                            if("".equals(columnName)){
+                                columnName= field.getName();
+                            }
+                            String methodName ="set"+columnName.substring(0,1).toUpperCase()+columnName.substring(1);
+                            Method method = clazz.getMethod(methodName,field.getType());
+                            Class typeName = field.getType();
+                            field.setAccessible(true);
+                            if(typeName == Long.class ){
+                                field.set(object,resultSet.getLong(columnName));
+                                //method.invoke(object,resultSet.getLong(columnName));
+                            }else if(typeName == String.class){
+                                field.set(object,resultSet.getString(columnName));
+                                //method.invoke(object,resultSet.getString(columnName));
+                            }
+                        }
+                    }
                 list.add(object);
             }
 
@@ -87,11 +101,12 @@ public class mysqlUtil {
 
     public static void main(String[] args) {
         String sql = "insert into user (username,password) values (111,222)";
-        String querySql = "select * from  user ";
+        String querySql = "select * from  user where username = '121212'";
 
         mysqlUtil mysqlUtil = new mysqlUtil();
 //        mysqlUtil.execute(sql);
         List list = mysqlUtil.executeQuery(querySql);
         System.out.println(list.toString());
+
     }
 }

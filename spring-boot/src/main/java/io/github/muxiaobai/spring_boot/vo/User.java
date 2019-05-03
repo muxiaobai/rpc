@@ -1,8 +1,12 @@
 package io.github.muxiaobai.spring_boot.vo;
 
+import io.github.muxiaobai.spring_boot.util.jdbc.Column;
+
 public class User
 {
+    @Column
     private String username;
+    @Column
     private String password;
 
     public String getPassword() {
