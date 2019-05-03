@@ -1,9 +1,10 @@
 package io.github.muxiaobai.spring_boot.util.jdbc;
 
+import io.github.muxiaobai.spring_boot.vo.User;
+
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class mysqlUtil {
@@ -15,7 +16,7 @@ public class mysqlUtil {
         }
     }
     public  static Connection createConn(){
-            String url  ="jdbc:mysql://localhost:3306/test";
+            String url  ="jdbc:mysql://localhost:3306/test?characterEncoding=utf8&serverTimezone=UTC";
             String userName = "root";
             String password = "123456";
             System.out.println("create connection："+ Thread.currentThread().getName());
@@ -61,7 +62,7 @@ public class mysqlUtil {
             ResultSet resultSet= preparedStatement.executeQuery();
             int len = resultSet.getMetaData().getColumnCount();
             while (resultSet.next()){
-                Class clazz = Demo.class;
+                Class clazz = User.class;
                 Object object = clazz.newInstance();
                 for (int i =0;i<len;i++){
                     String columnName = resultSet.getMetaData().getColumnName(i);

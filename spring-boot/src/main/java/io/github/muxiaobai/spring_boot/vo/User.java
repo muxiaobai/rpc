@@ -1,6 +1,7 @@
-package io.github.muxiaobai.spring_boot.util.jdbc;
+package io.github.muxiaobai.spring_boot.vo;
 
-public class Demo {
+public class User
+{
     private String username;
     private String password;
 
@@ -22,7 +23,7 @@ public class Demo {
 
     @Override
     public String toString() {
-        return "Demo{" +
+        return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';

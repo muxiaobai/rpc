@@ -9,6 +9,7 @@
 
 package io.github.muxiaobai.spring_boot.controller;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -64,6 +65,11 @@ public class UserController {
 
         return resMap;
 
+    }
+    @RequestMapping(value = "/doMyBatis", method = RequestMethod.GET)
+    @ResponseBody
+    public List doMyBatis(@RequestParam("username") String username) throws InterruptedException, ExecutionException {
+        return demoDBService.queryMyBatis(username);
     }
 
     @RequestMapping(value = "/db", method = RequestMethod.GET)

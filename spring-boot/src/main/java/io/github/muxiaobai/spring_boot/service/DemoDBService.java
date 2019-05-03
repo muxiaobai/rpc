@@ -9,9 +9,13 @@
 
 package io.github.muxiaobai.spring_boot.service;
 
+import io.github.muxiaobai.spring_boot.dao.UserDao;
 import io.github.muxiaobai.spring_boot.util.jdbc.mysqlUtil;
+import io.github.muxiaobai.spring_boot.vo.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -65,6 +69,11 @@ public class DemoDBService {
             thread.start();
             countDownLatch.countDown();
         }
+    }
+    @Autowired
+    public UserDao userDao;
+    public List<User> queryMyBatis(String username){
+            return userDao.query(username);
     }
 
 }

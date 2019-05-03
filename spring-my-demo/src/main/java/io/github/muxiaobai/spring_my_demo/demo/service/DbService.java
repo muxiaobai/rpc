@@ -14,8 +14,6 @@ public class DbService {
     public  MysqlPool mysqlPool;
     @Select("select * from user")
     public  String getDb(String name){
-        Connection connection = mysqlPool.getConn();
-        String sql = "";
         return  "gggg"+name;
     }
 
