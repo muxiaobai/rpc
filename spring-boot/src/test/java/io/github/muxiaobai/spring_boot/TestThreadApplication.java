@@ -44,7 +44,7 @@ public class TestThreadApplication {
     public DemoMoreService demoMoreService;
     @Autowired
     public DemoMoreThreadService demoMoreThreadService;
-    
+
     @Test
     public void test(){
        
@@ -67,12 +67,6 @@ public class TestThreadApplication {
             thread.start();
             countDownLatch.countDown();
         }
-       
-        try {
-            Thread.currentThread().sleep(10000);
-        } catch (InterruptedException e) {
-        }
-        
-        
+
     }
 }

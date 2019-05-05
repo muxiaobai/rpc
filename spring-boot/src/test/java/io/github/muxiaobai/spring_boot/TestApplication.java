@@ -59,15 +59,7 @@ public class TestApplication {
             countDownLatch.countDown();
         }
         
-        try {
-            Thread.currentThread().sleep(10000);
-        } catch (InterruptedException e) {
-            
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            
-        }
-        
+
         
     }
 }

@@ -9,29 +9,15 @@
 
 package io.github.muxiaobai.spring_boot.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import javax.annotation.PostConstruct;
-
+import io.github.muxiaobai.spring_boot.remoteService.RemoteServiceCall;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import io.github.muxiaobai.spring_boot.remoteService.RemoteServiceCall;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.*;
 
 /**
  * ClassName:DemoService 
