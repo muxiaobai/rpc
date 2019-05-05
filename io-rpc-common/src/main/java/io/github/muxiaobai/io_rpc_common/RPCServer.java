@@ -11,16 +11,14 @@ import io.github.muxiaobai.io_rpc_common.RPCExporter;
 
 public class RPCServer {
 	public static void main(String[] args) {
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				try {
-				    System.out.println("server listener at port : " + 8080);
-					RPCExporter.exporter("localhost", 8080);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}				
-			}
+	    
+		new Thread(()->{
+			try {
+			    System.out.println("server listener at port : " + 8080);
+				RPCExporter.exporter("localhost", 8080);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}				
 		}).start();
 	}
 }

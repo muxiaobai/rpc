@@ -9,8 +9,8 @@
 
 package cn.forp.netty_rpc_consumer;
 
-import cn.forp.netty_rpc_api.RpcProxy;
-import cn.forp.netty_rpc_api.RpcService;
+import io.github.muxiaobai.netty_rpc_api.RpcProxy;
+import io.github.muxiaobai.netty_rpc_api.RpcService;
 
 /**
  * ClassName:RpcConsumer 

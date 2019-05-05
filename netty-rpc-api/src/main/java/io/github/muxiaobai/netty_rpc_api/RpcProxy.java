@@ -7,7 +7,7 @@
  *
 */
 
-package cn.forp.netty_rpc_api;
+package io.github.muxiaobai.netty_rpc_api;
 /**
  * ClassName:RpcProxy 
  * Function: TODO 
@@ -22,7 +22,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import cn.forp.netty_rpc_api.InvokeMsg;
+import io.github.muxiaobai.netty_rpc_api.InvokeMsg;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
