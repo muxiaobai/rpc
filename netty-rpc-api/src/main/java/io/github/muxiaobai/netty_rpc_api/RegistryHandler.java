@@ -7,7 +7,7 @@
  *
 */
 
-package cn.forp.netty_rpc_api;
+package io.github.muxiaobai.netty_rpc_api;
 /**
  * ClassName:RegistryHandler 
  * Function: TODO 
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-import cn.forp.netty_rpc_api.InvokeMsg;
+import io.github.muxiaobai.netty_rpc_api.InvokeMsg;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
  
