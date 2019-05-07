@@ -10,7 +10,19 @@
   <name>spring-boot</name>
   <url>http://maven.apache.org</url>
   <build>  
-      <plugins>  
+      <plugins>
+          <plugin>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+<!--              <version>${spring.version}</version>-->
+              <executions>
+                  <execution>
+                      <goals>
+                          <goal>repackage</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
           <plugin>  
               <groupId>org.apache.maven.plugins</groupId>  
               <artifactId>maven-compiler-plugin</artifactId>  
@@ -22,9 +34,27 @@
           </plugin>  
       </plugins>  
   </build>
-  <properties>
+
+<properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+</properties>
+
+<distributionManagement>
+    <repository>
+        <id>proficio-repository</id>
+        <name>Proficio Repository</name>
+        <url>file://${basedir}/target/deploy</url>
+    </repository>
+</distributionManagement>
+
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.3.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+</parent>
 
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
