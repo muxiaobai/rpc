@@ -75,5 +75,8 @@ public class DemoDBService {
     public List<User> queryMyBatis(String username){
             return userDao.query(username);
     }
+    public  Integer insert(User user){
+        return userDao.insert(user);
+    }
 
 }

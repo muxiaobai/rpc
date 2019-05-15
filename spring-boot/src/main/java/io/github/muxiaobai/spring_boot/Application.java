@@ -21,6 +21,7 @@ package io.github.muxiaobai.spring_boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -29,6 +30,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //@EnableAutoConfiguration
 //@ComponentScan
 @SpringBootApplication
+//@SpringBootApplication(exclude= {DataSourceAutoConfiguration.class})
 public class Application {
       public static void main(String[] args) {
           SpringApplication.run(Application.class, args);

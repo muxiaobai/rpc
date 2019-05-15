@@ -1,13 +1,24 @@
 package io.github.muxiaobai.spring_boot.vo;
 
 import io.github.muxiaobai.spring_boot.util.jdbc.Column;
+import org.springframework.data.annotation.Id;
 
 public class User
 {
+    @Id
+    private Integer id;
     @Column
     private String username;
     @Column
     private String password;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPassword() {
         return password;
@@ -28,7 +39,8 @@ public class User
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "id=" + id +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

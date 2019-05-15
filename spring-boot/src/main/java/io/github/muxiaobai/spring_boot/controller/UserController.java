@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import io.github.muxiaobai.spring_boot.service.DemoDBService;
+import io.github.muxiaobai.spring_boot.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,6 +67,12 @@ public class UserController {
         return resMap;
 
     }
+    @RequestMapping(value = "/doPostMyBatis", method = RequestMethod.POST)
+    @ResponseBody
+    public String doInsert(User user) throws InterruptedException, ExecutionException {
+        return "Id:"+ demoDBService.insert(user)+",user:"+user;
+    }
+
     @RequestMapping(value = "/doMyBatis", method = RequestMethod.GET)
     @ResponseBody
     public List doMyBatis(@RequestParam("username") String username) throws InterruptedException, ExecutionException {
