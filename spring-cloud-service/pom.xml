@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
 
-    <name>spring-cloud-eureka</name>
+    <name>spring-cloud-service</name>
     <url>http://maven.apache.org</url>
     <build>
         <plugins>
