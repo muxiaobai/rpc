@@ -11,6 +11,7 @@ package io.github.muxiaobai.spring_cloud_service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,7 +34,7 @@ public class UserController {
 
     private static  final String REST_URL_PREFIX= "";
     @RequestMapping("/demo")
-    public String demo(String input){
+    public String demo(@RequestParam String input){
         return  input +",Thread:"+Thread.currentThread().getName();
     }
 
