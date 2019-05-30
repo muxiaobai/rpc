@@ -7,9 +7,8 @@
  *
 */
 
-package io.github.muxiaobai.spring_cloud_service.controller;
+package io.github.muxiaobai.spring_cloud_ribbon_client.controller;
 
-import com.netflix.discovery.EurekaClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -31,13 +30,19 @@ import java.util.List;
 public class UserController {
     @Value("${server.port}")
     private String port;
-//    @Autowired
-//    private EurekaClient discoveryClient;
+    @Autowired
+    public RestTemplate restTemplate;
 
-    private static  final String REST_URL_PREFIX= "";
-    @RequestMapping(value = "/demo/{input}",method = RequestMethod.GET)
-    public String demo(@PathVariable String input){
+    private static  final String REST_URL_PREFIX= "http://SPRING-CLOUD-SERVICE";
+   /* @RequestMapping(value = "/demo",method = RequestMethod.GET)
+    public String demo(@RequestParam String input){
         return  input +",port:"+port+",Thread:"+Thread.currentThread().getName();
+    }*/
+
+    @RequestMapping("/demo/{input}")
+    public String demo(@PathVariable String input){
+        System.out.println("dddd");
+        return restTemplate.getForObject(REST_URL_PREFIX+"/demo"+input,String.class);
     }
 
 }

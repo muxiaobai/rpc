@@ -7,15 +7,15 @@
  *
 */
 
-package io.github.muxiaobai.spring_cloud_service.controller;
+package io.github.muxiaobai.spring_cloud_feign_client.controller;
 
-import com.netflix.discovery.EurekaClient;
+import io.github.muxiaobai.spring_cloud_feign_client.feignclient.UserServiceFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ClassName:UserController
@@ -31,14 +31,19 @@ import java.util.List;
 public class UserController {
     @Value("${server.port}")
     private String port;
-//    @Autowired
-//    private EurekaClient discoveryClient;
 
     private static  final String REST_URL_PREFIX= "";
-    @RequestMapping(value = "/demo/{input}",method = RequestMethod.GET)
+    /*@RequestMapping(value = "/demo/{input}",method = RequestMethod.GET)
     public String demo(@PathVariable String input){
         return  input +",port:"+port+",Thread:"+Thread.currentThread().getName();
-    }
+    }*/
 
+    @Autowired
+    private UserServiceFeignClient userServiceFeignClient;
+
+    @RequestMapping("/demo/{input}")
+    public String hi(@PathVariable String input){
+        return userServiceFeignClient.demo(input);
+    }
 }
 
