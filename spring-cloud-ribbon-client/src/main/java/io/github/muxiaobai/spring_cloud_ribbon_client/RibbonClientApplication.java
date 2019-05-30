@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.cloud.netflix.ribbon.RibbonClient;
  * @Copyright © 2000-2019 . All Rights Reserved.
  */
 @RibbonClient(name = "spring-cloud-service")
+@EnableHystrix
 @EnableEurekaClient
 @EnableDiscoveryClient
 @SpringBootApplication

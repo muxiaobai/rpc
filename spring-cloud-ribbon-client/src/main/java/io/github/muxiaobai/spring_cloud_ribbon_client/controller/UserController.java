@@ -9,6 +9,7 @@
 
 package io.github.muxiaobai.spring_cloud_ribbon_client.controller;
 
+import io.github.muxiaobai.spring_cloud_ribbon_client.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -31,9 +32,9 @@ public class UserController {
     @Value("${server.port}")
     private String port;
     @Autowired
-    public RestTemplate restTemplate;
+    UserService userService;
 
-    private static  final String REST_URL_PREFIX= "http://SPRING-CLOUD-SERVICE";
+
    /* @RequestMapping(value = "/demo",method = RequestMethod.GET)
     public String demo(@RequestParam String input){
         return  input +",port:"+port+",Thread:"+Thread.currentThread().getName();
@@ -41,8 +42,7 @@ public class UserController {
 
     @RequestMapping("/demo/{input}")
     public String demo(@PathVariable String input){
-        System.out.println("dddd");
-        return restTemplate.getForObject(REST_URL_PREFIX+"/demo"+input,String.class);
+        return userService.demo(input);
     }
 
 }
