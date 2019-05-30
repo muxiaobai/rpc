@@ -23,7 +23,7 @@ public class UserService {
 
     @HystrixCommand(fallbackMethod = "reqErrFallBack")
     public String queryOrderStatusById(String orderId) {
-        return restTemplate.getForObject("http://spring-cloud-service/queryOrderStatusById?orderId="+orderId,String.class);
+        return restTemplate.getForObject(REST_URL_PREFIX+"/queryOrderStatusById?orderId="+orderId,String.class);
     }
 
     @HystrixCommand(fallbackMethod = "reqErrFallBack")
