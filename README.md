@@ -39,6 +39,7 @@ zookeeper需要创建一个永久节点 `create /registry ""`
 
 需要注意的是spring-boot和spring-cloud版本，需要匹配
 
+
 |Spring Boot | Spring Cloud |
 |:--:|:--:|
 |1.2.x	|Angel版本|
