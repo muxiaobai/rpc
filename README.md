@@ -48,6 +48,7 @@ zookeeper需要创建一个永久节点 `create /registry ""`
 |1.5.x	|Dalston版本、Edgware版本|
 |2.0.x	|Finchley版本|
 
+
 - spring-cloud-parent 所有spring-cloud的引用
 - spring-cloud-eureka 服务注册发现
 - spring-cloud-service 服务
