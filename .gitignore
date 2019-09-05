@@ -8,8 +8,8 @@ target/
 .project
 
 # Idea#
-.idea
-.iml
+*.idea
+*.iml
 
 # Compiled class file
 *.class
