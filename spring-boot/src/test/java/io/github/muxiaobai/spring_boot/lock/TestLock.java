@@ -31,15 +31,15 @@ import io.github.muxiaobai.spring_boot.Application;
  * @since    JDK 1.8	 
  */
 
-@SpringBootTest(classes= Application.class)
-@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest(classes= Application.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
 public class TestLock {
-    @Autowired
+    //@Autowired
     public OrderNumberGenerator orderNumberGenerator;
     private static final int nums = 100;
     private CountDownLatch countDownLatch = new CountDownLatch(nums); 
     private List<String> result = new Vector<>();
-    @Test
+    //@Test
     public void test(){
         for(int i  = 0;i<nums;i++){
             Thread thread = new Thread(()->{
