@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.muxiaobai</groupId>
+    <artifactId>spring-cloud-eureka</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>spring-cloud-eureka</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <start-class>io.github.muxiaobai.spring_cloud_enreka.EurekaServerApplication</start-class>
+    </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>proficio-repository</id>
+            <name>Proficio Repository</name>
+            <url>file://${basedir}/target/deploy</url>
+        </repository>
+    </distributionManagement>
+
+    <parent>
+        <groupId>io.github.muxiaobai</groupId>
+        <artifactId>spring-cloud-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../spring-cloud-parent</relativePath>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
