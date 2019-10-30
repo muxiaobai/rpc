@@ -6,7 +6,6 @@
         <groupId>io.github.muxiaobai</groupId>
         <artifactId>spring-cloud-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../spring-cloud-parent</relativePath>
     </parent>
     <groupId>io.github.muxiaobai</groupId>
     <artifactId>spring-cloud</artifactId>
@@ -14,10 +13,6 @@
     <name>spring-cloud</name>
     <description>Demo project for Spring Boot</description>
 
-    <modules>
-
-        <module>../spring-boot</module>
-    </modules>
     <properties>
         <java.version>1.8</java.version>
     </properties>

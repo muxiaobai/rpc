@@ -9,8 +9,11 @@ public class SonClass  extends  FatherClass{
     }
 
     static {
-        F_NUM = 4444;
+        S_NUM = 4444;
         System.out.println(F_NUM);
+    }
+    SonClass(){
+
     }
     SonClass(int inNUM){
         System.out.println(F_NUM);
