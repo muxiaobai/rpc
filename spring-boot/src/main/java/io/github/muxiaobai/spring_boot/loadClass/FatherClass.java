@@ -1,4 +1,4 @@
-package io.github.muxiaobai.spring_my_demo.loadClass;
+package io.github.muxiaobai.spring_boot.loadClass;
 
 
 public class FatherClass {

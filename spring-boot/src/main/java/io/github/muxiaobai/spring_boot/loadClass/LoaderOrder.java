@@ -1,4 +1,4 @@
-package io.github.muxiaobai.spring_my_demo.loadClass;
+package io.github.muxiaobai.spring_boot.loadClass;
 
 
 public class LoaderOrder {
@@ -8,14 +8,14 @@ public class LoaderOrder {
         testClassForName();
     }
     public static void testClassLoad() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Class clazz =LoaderOrder.class.getClassLoader().loadClass("io.github.muxiaobai.spring_my_demo.loadClass.SonClass");
+        Class clazz =LoaderOrder.class.getClassLoader().loadClass("io.github.muxiaobai.spring_boot.loadClass.SonClass");
         System.out.println("---------------------------");
         clazz.newInstance();
         System.out.println("===========================");
     }
 
     public static void testClassForName() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Class clazz =Class.forName("io.github.muxiaobai.spring_my_demo.loadClass.SonClass");
+        Class clazz =Class.forName("io.github.muxiaobai.spring_boot.loadClass.SonClass");
         System.out.println("---------------------------");
         clazz.newInstance();
         System.out.println("===========================");
