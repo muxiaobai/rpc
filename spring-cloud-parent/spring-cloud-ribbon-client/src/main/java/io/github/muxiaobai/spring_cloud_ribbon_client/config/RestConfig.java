@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @author Zhang Pengfei
+
  * @version V1.0
  * @PROJECT_NAME rpc
  * @Package io.github.muxiaobai.spring_cloud_service.config

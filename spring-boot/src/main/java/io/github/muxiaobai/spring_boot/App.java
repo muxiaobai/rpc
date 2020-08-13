@@ -1,6 +1,6 @@
 package io.github.muxiaobai.spring_boot;
 
-import io.github.muxiaobai.spring_boot.remoteService.RemoteServiceCall;
+import io.github.muxiaobai.spring_boot.manage.remoteService.RemoteServiceCall;
 import io.github.muxiaobai.spring_boot.service.DemoService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

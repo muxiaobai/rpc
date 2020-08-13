@@ -4,6 +4,7 @@
 绑定端口socket
 
 #### springmvc
+
 #### 配置阶段
 - web.xml 注解
 - DispatcherServlet SpringMvc
@@ -27,16 +28,15 @@
 
  org.springframework.web.servlet;
 
-
-        this.initMultipartResolver(context);
-        this.initLocaleResolver(context);
-        this.initThemeResolver(context);
-        this.initHandlerMappings(context);
-        this.initHandlerAdapters(context);
-        this.initHandlerExceptionResolvers(context);
-        this.initRequestToViewNameTranslator(context);
-        this.initViewResolvers(context);
-        this.initFlashMapManager(context);
+    this.initMultipartResolver(context);
+    this.initLocaleResolver(context);
+    this.initThemeResolver(context);
+    this.initHandlerMappings(context);
+    this.initHandlerAdapters(context);
+    this.initHandlerExceptionResolvers(context);
+    this.initRequestToViewNameTranslator(context);
+    this.initViewResolvers(context);
+    this.initFlashMapManager(context);
 #### spring ioc aop 
 
 ####mybatis

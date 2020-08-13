@@ -1,7 +1,7 @@
 /**
  * Project Name:spring-boot
  * File Name:UserController.java
- * Package Name:io.github.muxiaobai.spring_boot.controller
+ * Package Name:io.github.muxiaobai.spring_boot.manage.controller
  * Date:2019年4月8日下午7:58:02
  * Copyright (c) 2019, All Rights Reserved.
  *

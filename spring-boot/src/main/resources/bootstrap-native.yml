@@ -1,0 +1,58 @@
+server:
+  port: 18201
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+# 应用配置
+spring:
+  application:
+    name: app-search
+    admin:
+      jmx-name: org.springframework.boot:type=Admin,name=SpringApplication
+  datasource:
+    druid:
+      driver-class-name: org.postgresql.Driver
+      url: jdbc:postgresql://192.168.160.23:5432/appsearch
+      username: vsb_pgsql
+      password: Pgsql_2017
+  redis:
+    host: 192.168.120.63
+    port: 6379
+    timeout: 20000
+    password: Redis_2017@*))
+    expiretime: 6000
+  # RabbitMQ
+  rabbitmq:
+    host: 192.168.120.63
+    port: 5672
+    username: openlab_rabbit
+    password: RabbitMQ_2017@Lab
+  profiles:
+    include: mq,main,redis,datasource,mongodb,datasourceSlave
+  main:
+    allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      max-file-size: 2073741824
+      max-request-size: 2073741824
+      enabled: true
+
+logging:
+  config: classpath:logback-spring.xml
+# 限流模块的配置
+# 是否开启限流
+ratelimit:
+  do-rate-limit: true
+  wait-timeout: 20
+  permits-per-second: 200
+# 限流模块的配置
+# 是否开启限流
+#  ratelimit.doRateLimit=true
+  # 配置超时时间（配置将等待获取，不配置将直接返回）,单位毫秒
+#  ratelimit.waitTimeout=20
+  # 服务限流保护，服务每秒允许的TPS（需评估单个服务所允许的最大TPS）
+#  ratelimit.permitsPerSecond=200
+
+
+

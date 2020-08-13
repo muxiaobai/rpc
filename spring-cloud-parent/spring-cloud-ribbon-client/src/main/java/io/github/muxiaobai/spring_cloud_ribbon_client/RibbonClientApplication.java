@@ -8,7 +8,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 
 /**
- * @author Zhang Pengfei
+
  * @version V1.0
  * @PROJECT_NAME
  * @Package io.github.muxiaobai.spring_cloud_ribbon_client

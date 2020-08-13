@@ -5,7 +5,7 @@
     <parent>
         <artifactId>spring-cloud-parent</artifactId>
         <groupId>io.github.muxiaobai</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,7 @@
 
     <groupId>io.github.muxiaobai</groupId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
 
     <name>spring-cloud-feign-client</name>
