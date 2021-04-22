@@ -1,5 +1,5 @@
 server:
-  port: 18201
+  port: 18001
   servlet:
     context-path: /
   tomcat:
@@ -20,14 +20,14 @@ spring:
     host: 192.168.120.63
     port: 6379
     timeout: 20000
-    password: Redis_2017@*))
+    password: xx@*))
     expiretime: 6000
   # RabbitMQ
   rabbitmq:
     host: 192.168.120.63
     port: 5672
-    username: openlab_rabbit
-    password: RabbitMQ_2017@Lab
+    username: xx
+    password: xx@Lab
   profiles:
     include: mq,main,redis,datasource,mongodb,datasourceSlave
   main:

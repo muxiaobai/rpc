@@ -15,6 +15,7 @@ import io.github.muxiaobai.spring_boot.manage.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -70,13 +71,13 @@ public class DemoDBService {
             countDownLatch.countDown();
         }
     }
-    @Autowired
-    public UserDao userDao;
+//    @Autowired
+//    public UserDao userDao;
     public List<User> queryMyBatis(String username){
-            return userDao.query(username);
+        return new ArrayList<>();
     }
     public  Integer insert(User user){
-        return userDao.insert(user);
+        return 1;
     }
 
 }

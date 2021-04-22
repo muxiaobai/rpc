@@ -172,23 +172,23 @@
 <!--        <logger name="we.nmys.view" level="debug"/>-->
 <!--    </springProfile>-->
 
-<!--    <root level="info">-->
-<!--        <appender-ref ref="CONSOLE" />-->
-<!--        <appender-ref ref="DEBUG_FILE" />-->
-<!--        <appender-ref ref="INFO_FILE" />-->
-<!--        <appender-ref ref="WARN_FILE" />-->
-<!--        <appender-ref ref="ERROR_FILE" />-->
-<!--    </root>-->
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="DEBUG_FILE" />
+        <appender-ref ref="INFO_FILE" />
+        <appender-ref ref="WARN_FILE" />
+        <appender-ref ref="ERROR_FILE" />
+    </root>
 
     <!--生产环境:输出到文件-->
-    <springProfile name="native">
-        <root level="info">
-            <appender-ref ref="CONSOLE" />
-            <appender-ref ref="DEBUG_FILE" />
-            <appender-ref ref="INFO_FILE" />
-            <appender-ref ref="WARN_FILE" />
-            <appender-ref ref="ERROR_FILE" />
-        </root>
-    </springProfile>
+<!--    <springProfile name="native">-->
+<!--        <root level="info">-->
+<!--            <appender-ref ref="CONSOLE" />-->
+<!--            <appender-ref ref="DEBUG_FILE" />-->
+<!--            <appender-ref ref="INFO_FILE" />-->
+<!--            <appender-ref ref="WARN_FILE" />-->
+<!--            <appender-ref ref="ERROR_FILE" />-->
+<!--        </root>-->
+<!--    </springProfile>-->
 
 </configuration>

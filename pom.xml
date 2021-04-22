@@ -16,16 +16,16 @@
     </properties>
 
     <modules>
-        <module>io-rpc-common</module>
-        <module>io-tomcat</module>
-        <module>netty-rpc-api</module>
-        <module>netty-rpc-consumer</module>
-        <module>netty-rpc-registry</module>
-        <module>netty-zkp-api</module>
-        <module>netty-zkp-client</module>
-        <module>netty-zkp-common</module>
-        <module>netty-zkp-server</module>
-        <module>netty-zkp-zookeeper</module>
+<!--        <module>io-rpc-common</module>-->
+<!--        <module>io-tomcat</module>-->
+<!--        <module>netty-rpc-api</module>-->
+<!--        <module>netty-rpc-consumer</module>-->
+<!--        <module>netty-rpc-registry</module>-->
+<!--        <module>netty-zkp-api</module>-->
+<!--        <module>netty-zkp-client</module>-->
+<!--        <module>netty-zkp-common</module>-->
+<!--        <module>netty-zkp-server</module>-->
+<!--        <module>netty-zkp-zookeeper</module>-->
         <module>spring-boot</module>
         <module>spring-cloud-parent</module>
         <module>spring-my-demo</module>
