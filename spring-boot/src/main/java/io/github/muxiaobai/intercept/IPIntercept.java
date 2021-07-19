@@ -8,12 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @program: manage
- * @description: 禁用词拦截器
- * @author: zhangliang
- * @create: 2020-01-06 13:09
- **/
+
 @Slf4j
 @Component
 public class IPIntercept implements HandlerInterceptor {

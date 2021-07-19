@@ -8,12 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * @program: manage
- * @description: 搜索防火墙
- * @author: zhangliang
- * @create: 2020-01-06 14:53
- **/
+
 @Slf4j
 @Component
 public class FireWallIntercept implements HandlerInterceptor {
