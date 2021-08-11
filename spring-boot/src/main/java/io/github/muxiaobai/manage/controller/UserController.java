@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -55,9 +56,10 @@ public class UserController {
     @ResponseBody
     public Map<String, Object> getUser() throws InterruptedException, ExecutionException {
         Long startTime = System.currentTimeMillis();
+        Map<String, Object> resMap = new HashMap<>();
 //      Map<String, Object> resMap= demoMoreThreadService.doEachRemote(Thread.currentThread().getName());//依次调用
 //      Map<String, Object> resMap= demoMoreThreadService.doThreadRemote(Thread.currentThread().getName());//线程调用
-        Map<String, Object> resMap = demoMoreThreadService.doExecPoolRemote(Thread.currentThread().getName());//线程池调用
+//        Map<String, Object> resMap = demoMoreThreadService.doExecPoolRemote(Thread.currentThread().getName());//线程池调用
 
         Long endTime = System.currentTimeMillis();
         System.out.println("ThreadName:" + Thread.currentThread().getName() + ",result:" + resMap);
