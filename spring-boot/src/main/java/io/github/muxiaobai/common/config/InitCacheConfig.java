@@ -1,4 +1,4 @@
-package io.github.muxiaobai.spring_boot.common.config;
+package io.github.muxiaobai.common.config;
 
 
 import lombok.extern.slf4j.Slf4j;

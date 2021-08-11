@@ -7,11 +7,10 @@
  *
 */
 
-package io.github.muxiaobai.spring_boot.service;
+package io.github.muxiaobai.manage.service;
 
-import io.github.muxiaobai.spring_boot.manage.dao.UserDao;
-import io.github.muxiaobai.spring_boot.common.util.jdbc.mysqlUtil;
-import io.github.muxiaobai.spring_boot.manage.vo.User;
+import io.github.muxiaobai.common.util.jdbc.mysqlUtil;
+import io.github.muxiaobai.manage.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +34,7 @@ public class DemoDBService {
 
     public void dbConnPool(Integer nums) {
          CountDownLatch countDownLatch = new CountDownLatch(nums);
-         io.github.muxiaobai.spring_boot.common.util.jdbc.mysqlUtil mysqlUtil = new mysqlUtil();
+         mysqlUtil mysqlUtil = new mysqlUtil();
         for (int i = 0; i < nums; i++) {
             Thread thread = new Thread(() -> {
                 try {
@@ -54,7 +53,7 @@ public class DemoDBService {
     }
     public void dbConn(Integer nums) {
         CountDownLatch countDownLatch = new CountDownLatch(nums);
-        io.github.muxiaobai.spring_boot.common.util.jdbc.mysqlUtil mysqlUtil = new mysqlUtil();
+        mysqlUtil mysqlUtil = new mysqlUtil();
         for (int i = 0; i < nums; i++) {
             Thread thread = new Thread(() -> {
                 try {

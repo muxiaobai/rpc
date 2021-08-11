@@ -1,4 +1,4 @@
-package io.github.muxiaobai.spring_boot.intercept;
+package io.github.muxiaobai.intercept;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

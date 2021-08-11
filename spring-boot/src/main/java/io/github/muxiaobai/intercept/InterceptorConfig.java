@@ -1,4 +1,4 @@
-package io.github.muxiaobai.spring_boot.intercept;
+package io.github.muxiaobai.intercept;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

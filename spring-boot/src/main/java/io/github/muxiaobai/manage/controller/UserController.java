@@ -7,11 +7,11 @@
  *
 */
 
-package io.github.muxiaobai.spring_boot.manage.controller;
+package io.github.muxiaobai.manage.controller;
 
-import io.github.muxiaobai.spring_boot.manage.vo.User;
-import io.github.muxiaobai.spring_boot.service.DemoDBService;
-import io.github.muxiaobai.spring_boot.service.DemoMoreThreadService;
+import io.github.muxiaobai.manage.vo.User;
+import io.github.muxiaobai.manage.service.DemoDBService;
+import io.github.muxiaobai.manage.service.DemoMoreThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

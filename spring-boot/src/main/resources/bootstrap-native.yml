@@ -13,9 +13,11 @@ spring:
   datasource:
     druid:
       driver-class-name: org.postgresql.Driver
-      url: jdbc:postgresql://192.168.160.23:5432/appsearch
-      username: vsb_pgsql
-      password: Pgsql_2017
+      url: jdbc:postgresql://192.168.160.23:5432/xxx
+      username: xxx
+      password: xxx
+  redisson:
+    file: classpath:redisson.yml
   redis:
     host: 192.168.120.63
     port: 6379

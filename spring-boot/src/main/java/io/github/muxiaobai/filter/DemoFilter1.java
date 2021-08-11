@@ -1,4 +1,4 @@
-package io.github.muxiaobai.spring_boot.filter;
+package io.github.muxiaobai.filter;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
