@@ -9,7 +9,7 @@ public class Constant {
     public static final String N = "N";
 
 
-    public static final String VERIFY_REDIS_KEY = "app-search-code-";
+    public static final String VERIFY_REDIS_KEY = "app-code-";
     /**
      * currentUser常量
      */

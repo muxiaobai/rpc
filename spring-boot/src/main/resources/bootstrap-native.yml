@@ -22,8 +22,73 @@ spring:
     host: 192.168.120.63
     port: 6379
     timeout: 20000
-    password: xx@*))
+    password: xx
     expiretime: 6000
+    redisson:
+      file:  classpath:redission.yml
+      config: |
+        singleServerConfig:
+          idleConnectionTimeout: 10000
+          connectTimeout: 10000
+          timeout: 3000
+          retryAttempts: 3
+          retryInterval: 1500
+          password: x
+          subscriptionsPerConnection: 5
+          clientName: axin
+          address: redis://redis.shbeta@192.168.120.63:6379
+          subscriptionConnectionMinimumIdleSize: 1
+          subscriptionConnectionPoolSize: 50
+          connectionMinimumIdleSize: 32
+          connectionPoolSize: 64
+          database: 0
+          dnsMonitoringInterval: 5000
+        codec: !<org.redisson.codec.JsonJacksonCodec> {}
+        transportMode: "NIO"
+
+
+    #        # 单节点配置
+    #        singleServerConfig:
+    #          # 连接空闲超时，单位：毫秒
+    #          idleConnectionTimeout: 10000
+    #          # 连接超时，单位：毫秒
+    #          connectTimeout: 10000
+    #          # 命令等待超时，单位：毫秒
+    #          timeout: 3000
+    #          # 命令失败重试次数,如果尝试达到 retryAttempts（命令失败重试次数） 仍然不能将命令发送至某个指定的节点时，将抛出错误。
+    #          # 如果尝试在此限制之内发送成功，则开始启用 timeout（命令等待超时） 计时。
+    #          retryAttempts: 3
+    #          # 命令重试发送时间间隔，单位：毫秒
+    #          retryInterval: 1500
+    #          # 密码
+    #          password: x
+    #          # 单个连接最大订阅数量
+    #          subscriptionsPerConnection: 5
+    #          # 客户端名称
+    #          clientName: axin
+    #          #  # 节点地址
+    #          address: redis://redis.shbeta@192.168.120.63:6379
+    #          # 发布和订阅连接的最小空闲连接数
+    #          subscriptionConnectionMinimumIdleSize: 1
+    #          # 发布和订阅连接池大小
+    #          subscriptionConnectionPoolSize: 50
+    #          # 最小空闲连接数
+    #          connectionMinimumIdleSize: 32
+    #          # 连接池大小
+    #          connectionPoolSize: 64
+    #          # 数据库编号
+    #          database: 6
+    #          # DNS监测时间间隔，单位：毫秒
+    #          dnsMonitoringInterval: 5000
+    #          # 线程池数量,默认值: 当前处理核数量 * 2
+    #          #threads: 0
+    #          # Netty线程池数量,默认值: 当前处理核数量 * 2
+    #          #nettyThreads: 0
+    #          # 编码
+    #          codec: org.redisson.codec.JsonJacksonCodec
+    #          # 传输模式
+    #          transportMode: "NIO"
+
   # RabbitMQ
   rabbitmq:
     host: 192.168.120.63
